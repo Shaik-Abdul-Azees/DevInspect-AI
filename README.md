@@ -98,10 +98,3 @@ Here is how you can use the application's major features:
     *   The print layout fires in print mode, using `@media print` rules to hide sidebars and blurs, producing a clean, black-and-white multi-page audit report.
 
 
-
-PORT=5000
-NODE_ENV=development
-MONGODB_URI=mongodb://localhost:27017/devinspect
-JWT_SECRET=dev_inspect_secret_key_12345
-GEMINI_API_KEY=AIzaSyB_GaG1hsnLXfKsybeMmVyXZmCj6l8u6Lg
-GEMINI_MODEL=gemini-2.5-flash
