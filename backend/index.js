@@ -19,6 +19,10 @@ const limiter = rateLimit({
   max: 300, // increased to 300 for generic traffic
 });
 
+app.get("/", (req, res) => {
+  res.send("DevInspect AI Backend is Running 🚀");
+});
+
 // Stricter Rate Limiting for Auth
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, 
