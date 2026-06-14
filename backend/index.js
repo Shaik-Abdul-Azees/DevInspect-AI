@@ -7,6 +7,8 @@ const rateLimit = require('express-rate-limit');
 const mongoose = require('mongoose');
 
 const app = express();
+
+app.set('trust proxy', 1);
 const port = process.env.PORT || 5000;
 
 // Middleware
@@ -51,5 +53,5 @@ app.get('/api/health', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`🚀 Server running on http://localhost:${port}`);
+  console.log(`🚀 Server running on port ${port}`);
 });
