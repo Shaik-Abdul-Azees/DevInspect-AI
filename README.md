@@ -1,3 +1,12 @@
+# DevInspect AI
+
+🔗 Live Demo: https://dev-inspect-ai.vercel.app/
+
+AI-powered code review and repository inspection platform built with MERN, OpenAI, and GitHub integration.
+live working of my project just Demo it.....
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # DevInspect AI 🛡️
 > Automated Code Quality & Security Inspection Workbench
 
