@@ -46,24 +46,82 @@ export default function Landing() {
     }, 1800);
   };
 
-  const testimonials = [
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+  };
+
+  const workflowSteps = [
     {
-      name: "Sarah Jenkins",
-      role: "Director of Engineering, VeloTech",
-      text: "DevInspect AI restructured our review pipeline. It captured raw injection flaws in our pipeline endpoints before we even hit staging. Highly recommended!",
-      avatar: "SJ"
+      step: "01",
+      title: "Connect Repository",
+      description: "Import a GitHub repository in one click. Developer-friendly OAuth integration ensures zero-friction setup.",
+      icon: (
+        <svg className="w-6 h-6 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+        </svg>
+      )
     },
     {
-      name: "Alex Rivera",
-      role: "Lead Security Auditor, Securify",
-      text: "The AST vulnerability scanner is extremely precise. It saves hours of manual verification, making code inspection quick and pleasant.",
-      avatar: "AR"
+      step: "02",
+      title: "Fetch Source Code",
+      description: "Securely retrieve project files and structures. Built with enterprise-grade privacy to keep your code safe.",
+      icon: (
+        <svg className="w-6 h-6 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3" />
+        </svg>
+      )
     },
     {
-      name: "Ming Wei",
-      role: "Senior Javascript Architect, CloudFlux",
-      text: "The Monaco workspace integration with side-by-side diff viewers is fantastic! My developers get immediate fixes right in their workspace.",
-      avatar: "MW"
+      step: "03",
+      title: "Run AI Analysis",
+      description: "Generate intelligent code review insights. Design reviews with context-aware, developer-focused Gemini intelligence.",
+      icon: (
+        <svg className="w-6 h-6 text-brand-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 21l-.813-5.096L3 15l5.096-.813L9 9l.813 5.096L15 15l-5.187.904zM18 5.25L17 8l-1-2.75L13.25 5 16 4l1-2.75L18 4l2.75 1L18 5.25zM20 12.25L19 15l-1-2.75L15.25 12 18 11l1-2.75L20 11l2.75 1L20 12.25z" />
+        </svg>
+      )
+    },
+    {
+      step: "04",
+      title: "Detect Vulnerabilities",
+      description: "Perform AST-based security scanning. Catch buffer issues, variable hoisting bugs, and arbitrary execution flaws in real-time.",
+      icon: (
+        <svg className="w-6 h-6 text-brand-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+      )
+    },
+    {
+      step: "05",
+      title: "Review Recommendations",
+      description: "Get actionable recommendations for code quality, security, and maintainability. Apply instant fixes directly to the workspace.",
+      icon: (
+        <svg className="w-6 h-6 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        </svg>
+      )
+    },
+    {
+      step: "06",
+      title: "Save Analysis History",
+      description: "Access previous reports and repository reviews anytime. Audit and trace code quality improvements over time.",
+      icon: (
+        <svg className="w-6 h-6 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      )
     }
   ];
 
@@ -416,30 +474,91 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* Testimonials Slider */}
-        <section id="testimonials" className="flex flex-col gap-10">
-          <div className="text-center max-w-xl mx-auto flex flex-col gap-2">
-            <h2 className="text-3xl font-extrabold text-brand-text">Loved by Developers Worldwide</h2>
-            <p className="text-xs text-brand-text-muted">Read feedback from our engineering integration teams.</p>
+        {/* How DevInspect AI Works */}
+        <section id="how-it-works" className="flex flex-col gap-10 scroll-mt-24">
+          <div className="text-center max-w-2xl mx-auto flex flex-col gap-2">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-brand-text">
+              How DevInspect <span className="bg-gradient-to-r from-brand-primary via-fuchsia-400 to-brand-secondary bg-clip-text text-transparent">AI Works</span>
+            </h2>
+            <p className="text-xs md:text-sm text-brand-text-muted">
+              Analyze repositories, detect vulnerabilities, and receive AI-powered code insights in a few simple steps.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto w-full">
-            {testimonials.map((test, idx) => (
-              <div key={idx} className="glass-panel rounded-2xl p-5 border border-brand-border/10 flex flex-col justify-between gap-6 shadow-md">
-                <p className="text-xs text-brand-text-muted italic leading-relaxed">
-                  "{test.text}"
-                </p>
-                <div className="flex items-center gap-3.5">
-                  <div className="w-9 h-9 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary font-bold text-xs border border-brand-primary/15">
-                    {test.avatar}
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-brand-text">{test.name}</h4>
-                    <span className="text-[10px] text-brand-text-muted">{test.role}</span>
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto w-full"
+          >
+            {workflowSteps.map((step, idx) => (
+              <motion.div 
+                key={idx}
+                variants={itemVariants}
+                className="glass-panel-interactive rounded-2xl p-6 border border-brand-border/10 flex flex-col gap-4 shadow-md relative group hover:border-brand-primary/30"
+              >
+                {idx < 5 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-[2px] bg-gradient-to-r from-brand-primary/20 to-transparent z-0 pointer-events-none group-hover:from-brand-primary/40" />
+                )}
+                
+                <div className="flex justify-between items-center z-10">
+                  <span className="text-4xl font-black bg-gradient-to-br from-brand-text/10 to-brand-text/20 bg-clip-text text-transparent group-hover:from-brand-primary/20 group-hover:to-brand-secondary/20 transition-all duration-300">
+                    {step.step}
+                  </span>
+                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-brand-border/10 flex items-center justify-center shadow-inner group-hover:bg-brand-primary/10 group-hover:border-brand-primary/20 transition-all duration-300">
+                    {step.icon}
                   </div>
                 </div>
-              </div>
+
+                <div className="flex flex-col gap-1.5 z-10">
+                  <h3 className="text-sm font-extrabold text-brand-text group-hover:text-brand-primary transition-colors duration-300">
+                    {step.title}
+                  </h3>
+                  <p className="text-xs text-brand-text-muted leading-relaxed font-medium">
+                    {step.description}
+                  </p>
+                </div>
+              </motion.div>
             ))}
+          </motion.div>
+
+          {/* Coder-Friendly Features Highlights */}
+          <div className="mt-8 border-t border-brand-border/5 pt-12 max-w-5xl mx-auto w-full">
+            <h3 className="text-center text-xs font-extrabold bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent uppercase tracking-widest mb-8">
+              Why developers love DevInspect AI
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+              <div className="flex gap-4 items-start p-4 rounded-xl hover:bg-white/[0.02] transition-colors group">
+                <span className="text-2xl mt-0.5 group-hover:scale-110 transition-transform duration-300">💻</span>
+                <div>
+                  <h4 className="text-xs font-extrabold text-brand-text group-hover:text-brand-primary transition-colors">Intuitive Monaco Workspace</h4>
+                  <p className="text-[11px] text-brand-text-muted mt-1 leading-relaxed">
+                    Feels identical to VS Code with full syntax highlighting and instant side-by-side split Diff Viewer to apply fixes immediately.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4 items-start p-4 rounded-xl hover:bg-white/[0.02] transition-colors group">
+                <span className="text-2xl mt-0.5 group-hover:scale-110 transition-transform duration-300">⚡</span>
+                <div>
+                  <h4 className="text-xs font-extrabold text-brand-text group-hover:text-brand-primary transition-colors">Built for Speed</h4>
+                  <p className="text-[11px] text-brand-text-muted mt-1 leading-relaxed">
+                    Lightning-fast AST parsing combined with immediate Gemini Pro audit execution. Get feedback in seconds, not hours.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4 items-start p-4 rounded-xl hover:bg-white/[0.02] transition-colors group">
+                <span className="text-2xl mt-0.5 group-hover:scale-110 transition-transform duration-300">🔒</span>
+                <div>
+                  <h4 className="text-xs font-extrabold text-brand-text group-hover:text-brand-primary transition-colors">Privacy by Design</h4>
+                  <p className="text-[11px] text-brand-text-muted mt-1 leading-relaxed">
+                    Zero persistent caching of anonymous scans and TLS encrypted pipes. Your source code and IP always remain 100% yours.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
